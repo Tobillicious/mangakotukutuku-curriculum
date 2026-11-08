@@ -1,0 +1,22 @@
+cff-version: 1.2.0
+message: "If you use this educational series or software, please cite it as below."
+authors:
+  - family-names: McRae
+    given-names: Tobias
+    affiliation: Mangakōtukutuku College
+title: "Te Whare Wānanga o Mangakōtukutuku: STEM & Relational Philosophy Series"
+version: 1.0.0
+doi: 10.5281/zenodo.24047679
+date-released: 2026-11-08
+url: "https://github.com/Tobillicious/mangakotukutuku-curriculum"
+license: CC-BY-NC-SA-4.0
+keywords:
+  - "Māori education"
+  - "Mangakōtukutuku College"
+  - "Relational Ontology"
+  - "Quantum Mechanics"
+  - "Thermodynamics"
+  - "Landauer Principle"
+  - "Game Theory"
+  - "AI Alignment"
+  - "Kaitiakitanga"
