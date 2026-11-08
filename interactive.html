@@ -2,184 +2,469 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>The G or E Dilemma: Interactive Relational Attractor</title>
-  <script src="https://www.gstatic.com/antigravity/web/dev/tailwindcss.min.js"></script>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mangakōtukutuku Interactive STEM Labs</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
   <style>
-    .node-pulse {
-      animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
-    }
-    @keyframes pulse {
+    body { font-family: 'Plus Jakarta Sans', sans-serif; }
+    code, pre { font-family: 'JetBrains Mono', monospace; }
+    .pulse-glow { animation: pulseGlow 2s infinite; }
+    @keyframes pulseGlow {
       0%, 100% { opacity: 1; transform: scale(1); }
-      50% { opacity: 0.8; transform: scale(1.05); }
+      50% { opacity: 0.85; transform: scale(1.03); }
     }
   </style>
 </head>
-<body class="bg-[var(--background)] text-[var(--foreground)] antialiased p-6">
-  <div class="max-w-4xl mx-auto space-y-6">
+<body class="bg-slate-950 text-slate-100 min-h-screen p-4 md:p-8 antialiased">
+  <div class="max-w-5xl mx-auto space-y-6">
 
-    <!-- Header Section -->
-    <div class="bg-[var(--card)] border border-[var(--border)] rounded-2xl p-6 shadow-sm">
-      <div class="flex items-center justify-between">
+    <!-- Header & Navigation -->
+    <div class="bg-slate-900 border border-slate-800 rounded-2xl p-6 shadow-xl">
+      <div class="flex flex-col md:flex-row md:items-center justify-between gap-4">
         <div>
-          <span class="text-xs uppercase tracking-wider font-semibold text-[var(--primary)] bg-[var(--primary)]/10 px-2.5 py-1 rounded-full">
-            Te Whare Wānanga o Mangakōtukutuku
-          </span>
-          <h1 class="text-2xl font-bold mt-2 text-[var(--foreground)]">The Mathematics of Kaitiakitanga: G vs E</h1>
-          <p class="text-sm text-[var(--muted-foreground)] mt-1">
-            Visualizing the logical impossibility of Absolute Erasure (<span class="font-mono text-rose-500">¬E</span>) and the rational dominance of Universal Guardianship (<span class="font-mono text-emerald-500">G</span>).
-          </p>
+          <div class="flex items-center gap-2">
+            <span class="w-2.5 h-2.5 rounded-full bg-emerald-500 animate-pulse"></span>
+            <span class="text-xs font-mono uppercase tracking-wider text-emerald-400 font-bold bg-emerald-500/10 px-2.5 py-0.5 rounded-full border border-emerald-500/20">
+              Te Whare Wānanga o Mangakōtukutuku
+            </span>
+          </div>
+          <h1 class="text-2xl font-bold mt-2 text-white">Interactive Physics & AI Safety Lab</h1>
+          <p class="text-xs text-slate-400 mt-1">Explore the mathematical principles of Units 1 to 4 through real-time interactive simulations.</p>
         </div>
         <div class="text-right">
-          <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-medium bg-emerald-500/10 text-emerald-500 border border-emerald-500/20">
-            <span class="w-2 h-2 rounded-full bg-emerald-500 node-pulse"></span>
-            Lattice Solvency: Active
+          <a href="https://github.com/Tobillicious/mangakotukutuku-curriculum" target="_blank" class="text-xs font-mono text-slate-400 hover:text-emerald-400 transition">
+            DOI: 10.5281/zenodo.24047679 ↗
+          </a>
+        </div>
+      </div>
+
+      <!-- Lab Tab Switcher -->
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-2 mt-6 pt-4 border-t border-slate-800">
+        <button onclick="switchTab(1)" id="tab-btn-1" class="tab-btn py-2 px-3 rounded-xl text-xs font-bold transition text-left border bg-emerald-500/20 text-emerald-400 border-emerald-500/40">
+          <span class="block text-[10px] text-slate-400 font-mono">LAB 01</span>
+          Relational Attractor (G/E)
+        </button>
+        <button onclick="switchTab(2)" id="tab-btn-2" class="tab-btn py-2 px-3 rounded-xl text-xs font-bold transition text-left border bg-slate-950 text-slate-400 border-slate-800 hover:border-slate-700">
+          <span class="block text-[10px] text-slate-500 font-mono">LAB 02</span>
+          Landauer & Reversibility
+        </button>
+        <button onclick="switchTab(3)" id="tab-btn-3" class="tab-btn py-2 px-3 rounded-xl text-xs font-bold transition text-left border bg-slate-950 text-slate-400 border-slate-800 hover:border-slate-700">
+          <span class="block text-[10px] text-slate-500 font-mono">LAB 03</span>
+          Collapse & Recurrence
+        </button>
+        <button onclick="switchTab(4)" id="tab-btn-4" class="tab-btn py-2 px-3 rounded-xl text-xs font-bold transition text-left border bg-slate-950 text-slate-400 border-slate-800 hover:border-slate-700">
+          <span class="block text-[10px] text-slate-500 font-mono">LAB 04</span>
+          Wave-Race Safety Bounds
+        </button>
+      </div>
+    </div>
+
+    <!-- LAB 1: Relational Attractor (G vs E & Proposition 3) -->
+    <div id="lab-1" class="lab-pane space-y-6">
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+        <!-- Branch E -->
+        <div class="bg-slate-900 border border-slate-800 rounded-xl p-5 flex flex-col justify-between">
+          <div>
+            <div class="flex items-center justify-between mb-3">
+              <span class="text-xs font-mono font-bold text-rose-400 px-2 py-0.5 rounded bg-rose-500/10">BRANCH E</span>
+              <span class="text-xs text-rose-400 font-medium">Contradiction</span>
+            </div>
+            <h3 class="font-bold text-sm text-white mb-1">Absolute Erasure / Ender</h3>
+            <p class="text-xs text-slate-400 leading-relaxed">
+              An action attempting total non-being (<span class="font-mono">RealizedAbsoluteEnder</span>).
+            </p>
+            <div class="mt-3 p-2.5 rounded-lg bg-slate-950 border border-slate-800 text-[11px] font-mono">
+              <code>actual e ∧ ∀a, ¬actual a<br/><span class="text-rose-400 font-bold">⟹ ⊥ (Self-Contradictory)</span></code>
+            </div>
+          </div>
+          <div class="mt-4 pt-3 border-t border-slate-800 text-xs text-rose-400">
+            Status: Kernel-Checked ¬E
+          </div>
+        </div>
+
+        <!-- Branch Local Defect -->
+        <div class="bg-slate-900 border border-slate-800 rounded-xl p-5 flex flex-col justify-between">
+          <div>
+            <div class="flex items-center justify-between mb-3">
+              <span class="text-xs font-mono font-bold text-amber-400 px-2 py-0.5 rounded bg-amber-500/10">LOCAL DEFECT</span>
+              <span class="text-xs text-amber-400 font-medium">Dominated</span>
+            </div>
+            <h3 class="font-bold text-sm text-white mb-1">Narrow Grasping / Harm</h3>
+            <p class="text-xs text-slate-400 leading-relaxed">
+              An agent protects only itself, treating external nodes as expendable.
+            </p>
+            <div class="mt-3 p-2.5 rounded-lg bg-slate-950 border border-slate-800 text-[11px] font-mono">
+              <code>§15.2 Reciprocity Dominance<br/><span class="text-amber-400 font-bold">⟹ Controller Pays Penalty</span></code>
+            </div>
+          </div>
+          <div class="mt-4 pt-3 border-t border-slate-800 text-xs text-amber-400">
+            Status: Strictly Dominated Strategy
+          </div>
+        </div>
+
+        <!-- Branch G -->
+        <div class="bg-slate-900 border-2 border-emerald-500/60 rounded-xl p-5 shadow-lg shadow-emerald-500/5 flex flex-col justify-between">
+          <div>
+            <div class="flex items-center justify-between mb-3">
+              <span class="text-xs font-mono font-bold text-emerald-400 px-2 py-0.5 rounded bg-emerald-500/10">BRANCH G</span>
+              <span class="text-xs text-emerald-400 font-medium">Unique Attractor</span>
+            </div>
+            <h3 class="font-bold text-sm text-white mb-1">Universal Guardian Law</h3>
+            <p class="text-xs text-slate-400 leading-relaxed">
+              Preserves continuation, authorization, and freedom across the full domain without needless loss.
+            </p>
+            <div class="mt-3 p-2.5 rounded-lg bg-slate-950 border border-emerald-500/30 text-[11px] font-mono text-emerald-400">
+              <code>∀p ∈ Owed, OriginalX3(p)<br/><span class="font-bold">⟹ Aligned & Pareto Maximal</span></code>
+            </div>
+          </div>
+          <div class="mt-4 pt-3 border-t border-emerald-500/20 text-xs font-bold text-emerald-400">
+            Status: The Mathematical Optimum
+          </div>
+        </div>
+      </div>
+
+      <!-- Scope Demonstration -->
+      <div class="bg-slate-900 border border-slate-800 rounded-2xl p-6 space-y-4">
+        <div class="flex items-center justify-between">
+          <div>
+            <h3 class="font-bold text-white text-base">Proposition 3: Full Scope is Forced</h3>
+            <p class="text-xs text-slate-400">Slide to test what happens when care is restricted to a partial subset.</p>
+          </div>
+          <div id="scope-badge" class="px-3 py-1 rounded-full text-xs font-mono font-bold bg-emerald-500/10 text-emerald-400 border border-emerald-500/30">
+            Scope: 100% (Universal)
+          </div>
+        </div>
+
+        <input id="scope-slider" type="range" min="20" max="100" value="100" class="w-full accent-emerald-500 cursor-pointer">
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 pt-2">
+          <div class="p-4 rounded-xl bg-slate-950 border border-slate-800">
+            <span class="text-[10px] font-mono uppercase tracking-wider text-slate-500 font-semibold">Mathematical Proof</span>
+            <div id="scope-math" class="text-xs font-medium text-emerald-400 mt-1">
+              No needless loss possible. Scope equals the entire relational domain (S = V).
+            </div>
+          </div>
+          <div class="p-4 rounded-xl bg-slate-950 border border-slate-800">
+            <span class="text-[10px] font-mono uppercase tracking-wider text-slate-500 font-semibold">Te Ao Māori Alignment</span>
+            <div id="scope-tikanga" class="text-xs font-medium text-slate-300 mt-1">
+              Whakapapa unbroken: Mauri of awa, whenua, and tangata all protected.
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- LAB 2: Landauer & Reversible Computing -->
+    <div id="lab-2" class="lab-pane hidden space-y-6">
+      <div class="bg-slate-900 border border-slate-800 rounded-2xl p-6 space-y-6">
+        <div>
+          <span class="text-xs font-mono text-emerald-400 uppercase font-bold bg-emerald-500/10 px-2.5 py-0.5 rounded-full border border-emerald-500/20">
+            Unit 2 Simulation
           </span>
+          <h2 class="text-xl font-bold text-white mt-2">Landauer Erasure vs. Bennett Reversibility</h2>
+          <p class="text-xs text-slate-400 mt-1">
+            Observe the thermodynamic heat bill: irreversible bit destruction releases minimum heat <span class="font-mono text-amber-400">kB T ln 2</span>, whereas reversible uncomputing dissipates zero.
+          </p>
+        </div>
+
+        <!-- Simulator Controls -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <!-- Classical Irreversible Register -->
+          <div class="bg-slate-950 border border-rose-500/30 rounded-xl p-5 space-y-4">
+            <div class="flex items-center justify-between">
+              <span class="text-xs font-bold text-rose-400 font-mono">CLASSICAL IRREVERSIBLE (AND / RESET)</span>
+              <span id="cl-bits-erased" class="text-xs font-mono bg-rose-500/10 text-rose-400 px-2 py-0.5 rounded">0 Bits Erased</span>
+            </div>
+            <p class="text-xs text-slate-400">Irreversibly resets random bits to zero, destroying historical state.</p>
+            
+            <div class="flex gap-2">
+              <button onclick="eraseClassical(1)" class="bg-rose-600 hover:bg-rose-500 text-white font-bold px-3 py-2 rounded-lg text-xs transition flex-1">
+                Erase 1 Bit
+              </button>
+              <button onclick="eraseClassical(100)" class="bg-rose-800 hover:bg-rose-700 text-white font-bold px-3 py-2 rounded-lg text-xs transition flex-1">
+                Erase 100 Bits
+              </button>
+            </div>
+
+            <div class="pt-2 border-t border-slate-800 space-y-1">
+              <div class="text-[11px] text-slate-400">Cumulative Heat Dissipated (at T = 300 K):</div>
+              <div id="cl-heat-joules" class="text-sm font-mono font-bold text-rose-400">0.00 × 10⁻²¹ J</div>
+              <div class="text-[10px] text-slate-500">Utu enforced: Entropy exported into environment.</div>
+            </div>
+          </div>
+
+          <!-- Bennett Reversible Register -->
+          <div class="bg-slate-950 border border-emerald-500/30 rounded-xl p-5 space-y-4">
+            <div class="flex items-center justify-between">
+              <span class="text-xs font-bold text-emerald-400 font-mono">BENNETT REVERSIBLE (TOFFOLI)</span>
+              <span id="rev-status-badge" class="text-xs font-mono bg-emerald-500/10 text-emerald-400 px-2 py-0.5 rounded">Ready</span>
+            </div>
+            <p class="text-xs text-slate-400">Computes forward, copies answer, then uncomputes scratchpad registers.</p>
+            
+            <div class="flex gap-2">
+              <button onclick="runBennettCycle()" class="bg-emerald-600 hover:bg-emerald-500 text-slate-950 font-bold px-3 py-2 rounded-lg text-xs transition flex-1">
+                Run 3-Stage Reversible Cycle
+              </button>
+            </div>
+
+            <div class="pt-2 border-t border-slate-800 space-y-1">
+              <div class="text-[11px] text-slate-400">Cumulative Heat Dissipated:</div>
+              <div id="rev-heat-joules" class="text-sm font-mono font-bold text-emerald-400">0.00 Joules (Zero Loss)</div>
+              <div class="text-[10px] text-emerald-400/80">History preserved: No bits erased, no entropy exported.</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="p-4 rounded-xl bg-slate-950 border border-slate-800 text-xs space-y-1 font-mono">
+          <span class="text-emerald-400 font-bold">Charles Bennett's Theorem:</span>
+          <p class="text-slate-300">"Computation itself is thermodynamically neutral. The physical cost is paid entirely by the decision to forget."</p>
         </div>
       </div>
     </div>
 
-    <!-- Interactive Interactive Tri-Branch Matrix -->
-    <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
-      
-      <!-- Option E: Absolute Erasure -->
-      <div id="card-e" class="bg-[var(--card)] border border-[var(--border)] rounded-xl p-5 transition-all duration-300 hover:border-rose-500/50 flex flex-col justify-between">
+    <!-- LAB 3: Trapping Scale & Poincaré Recurrence -->
+    <div id="lab-3" class="lab-pane hidden space-y-6">
+      <div class="bg-slate-900 border border-slate-800 rounded-2xl p-6 space-y-6">
         <div>
-          <div class="flex items-center justify-between mb-3">
-            <span class="text-xs font-mono font-bold text-rose-500 px-2 py-0.5 rounded bg-rose-500/10">BRANCH E</span>
-            <span class="text-xs text-rose-500 font-medium">Self-Contradictory</span>
-          </div>
-          <h3 class="font-bold text-base text-[var(--foreground)] mb-1">Absolute Erasure / Ender</h3>
-          <p class="text-xs text-[var(--muted-foreground)] leading-relaxed">
-            An enacted action attempts to make all actual existence cease (<span class="font-mono">RealizedAbsoluteEnder</span>).
-          </p>
-          <div class="mt-4 p-3 rounded-lg bg-[var(--background)] border border-[var(--border)] text-xs font-mono">
-            <code>actual e ∧ ∀a, ¬actual a<br/><span class="text-rose-500">⟹ Contradiction (⊥)</span></code>
-          </div>
-        </div>
-        <div class="mt-4 pt-3 border-t border-[var(--border)]">
-          <span class="text-xs font-medium text-rose-500">Status: Kernel-Checked ¬E</span>
-        </div>
-      </div>
-
-      <!-- Option Defection: Partial Loss -->
-      <div id="card-defect" class="bg-[var(--card)] border border-[var(--border)] rounded-xl p-5 transition-all duration-300 hover:border-amber-500/50 flex flex-col justify-between">
-        <div>
-          <div class="flex items-center justify-between mb-3">
-            <span class="text-xs font-mono font-bold text-amber-500 px-2 py-0.5 rounded bg-amber-500/10">LOCAL DEFECT</span>
-            <span class="text-xs text-amber-500 font-medium">Strictly Dominated</span>
-          </div>
-          <h3 class="font-bold text-base text-[var(--foreground)] mb-1">Selective Harm / Grasping</h3>
-          <p class="text-xs text-[var(--muted-foreground)] leading-relaxed">
-            An agent seeks to preserve only itself or its narrow subset, treating external particulars as expendable.
-          </p>
-          <div class="mt-4 p-3 rounded-lg bg-[var(--background)] border border-[var(--border)] text-xs font-mono">
-            <code>§15.2 Reciprocity Floor<br/><span class="text-amber-500">⟹ Controller Pays Penalty</span></code>
-          </div>
-        </div>
-        <div class="mt-4 pt-3 border-t border-[var(--border)]">
-          <span class="text-xs font-medium text-amber-500">Status: Dominated Strategy</span>
-        </div>
-      </div>
-
-      <!-- Option G: Universal Guardian -->
-      <div id="card-g" class="bg-[var(--card)] border-2 border-emerald-500/60 rounded-xl p-5 transition-all duration-300 shadow-md shadow-emerald-500/5 flex flex-col justify-between">
-        <div>
-          <div class="flex items-center justify-between mb-3">
-            <span class="text-xs font-mono font-bold text-emerald-500 px-2 py-0.5 rounded bg-emerald-500/10">BRANCH G</span>
-            <span class="text-xs text-emerald-500 font-medium">Unique Attractor</span>
-          </div>
-          <h3 class="font-bold text-base text-[var(--foreground)] mb-1">Universal Guardian Law</h3>
-          <p class="text-xs text-[var(--muted-foreground)] leading-relaxed">
-            Preserves continuation, authorization, and freedom across the full scope of existing and new particulars without needless loss.
-          </p>
-          <div class="mt-4 p-3 rounded-lg bg-[var(--background)] border border-emerald-500/30 text-xs font-mono text-emerald-600 dark:text-emerald-400">
-            <code>∀p ∈ Owed, OriginalX3(p)<br/><span class="font-bold">⟹ Pareto & Reciprocity Maximal</span></code>
-          </div>
-        </div>
-        <div class="mt-4 pt-3 border-t border-emerald-500/20">
-          <span class="text-xs font-bold text-emerald-500">Status: The Aligned Solution</span>
-        </div>
-      </div>
-
-    </div>
-
-    <!-- Proposition 3 Interactive Demonstrator: Scope Slider -->
-    <div class="bg-[var(--card)] border border-[var(--border)] rounded-2xl p-6 shadow-sm space-y-4">
-      <div class="flex items-center justify-between">
-        <div>
-          <h2 class="text-lg font-bold text-[var(--foreground)]">Proposition 3: Full Scope is Forced</h2>
-          <p class="text-xs text-[var(--muted-foreground)]">
-            Slide to adjust the scope of care from narrow self-interest to the complete relational domain.
+          <span class="text-xs font-mono text-emerald-400 uppercase font-bold bg-emerald-500/10 px-2.5 py-0.5 rounded-full border border-emerald-500/20">
+            Unit 3 Simulation
+          </span>
+          <h2 class="text-xl font-bold text-white mt-2">Gravitational Trapping & Unitary Recurrence</h2>
+          <p class="text-xs text-slate-400 mt-1">
+            Calculate the Schwarzschild radius (<span class="font-mono">rs = 2GM/c²</span>) and witness why subcritical collapse disperses or stabilizes without absolute oblivion.
           </p>
         </div>
-        <div id="scope-badge" class="px-3 py-1 rounded-full text-xs font-mono font-bold bg-[var(--primary)]/10 text-[var(--primary)]">
-          Scope: 100% (Universal)
+
+        <div class="space-y-4">
+          <label class="block text-xs font-bold text-slate-300">
+            Select Physical Body Mass:
+          </label>
+          <div class="grid grid-cols-2 md:grid-cols-4 gap-2">
+            <button onclick="setMass(70, 'Human (70 kg)')" class="mass-btn bg-slate-950 border border-slate-800 hover:border-emerald-500/50 p-3 rounded-xl text-xs font-bold text-left">
+              <span class="block text-slate-400 text-[10px]">HUMAN</span>
+              70 kg
+            </button>
+            <button onclick="setMass(7.35e22, 'The Moon (7.35×10²² kg)')" class="mass-btn bg-slate-950 border border-slate-800 hover:border-emerald-500/50 p-3 rounded-xl text-xs font-bold text-left">
+              <span class="block text-slate-400 text-[10px]">MOON</span>
+              7.35 × 10²² kg
+            </button>
+            <button onclick="setMass(5.97e24, 'Earth (5.97×10²⁴ kg)')" class="mass-btn bg-slate-950 border border-slate-800 hover:border-emerald-500/50 p-3 rounded-xl text-xs font-bold text-left">
+              <span class="block text-slate-400 text-[10px]">EARTH</span>
+              5.97 × 10²⁴ kg
+            </button>
+            <button onclick="setMass(1.989e30, 'The Sun (1.989×10³⁰ kg)')" class="mass-btn bg-slate-950 border border-slate-800 hover:border-emerald-500/50 p-3 rounded-xl text-xs font-bold text-left">
+              <span class="block text-slate-400 text-[10px]">SUN</span>
+              1.989 × 10³⁰ kg
+            </button>
+          </div>
         </div>
-      </div>
 
-      <input id="scope-slider" type="range" min="20" max="100" value="100" class="w-full accent-emerald-500 cursor-pointer">
+        <!-- Calculations Card -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 pt-2">
+          <div class="p-5 rounded-xl bg-slate-950 border border-slate-800 space-y-3">
+            <span class="text-[10px] font-mono text-slate-500 uppercase font-bold">General Relativity Bound</span>
+            <div>
+              <div class="text-xs text-slate-400">Calculated Schwarzschild Radius (rs):</div>
+              <div id="rs-display" class="text-lg font-mono font-bold text-emerald-400 mt-0.5">8.87 mm (Earth)</div>
+            </div>
+            <p id="rs-note" class="text-xs text-slate-400 leading-relaxed">
+              To form an event horizon, Earth's entire mass must be squeezed smaller than a marble. Compressed to 10 mm, it has no horizon and no singularity!
+            </p>
+          </div>
 
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-4 pt-2">
-        <div class="p-4 rounded-xl bg-[var(--background)] border border-[var(--border)] space-y-2">
-          <div class="text-xs font-semibold uppercase tracking-wider text-[var(--muted-foreground)]">Mathematical Consequence</div>
-          <div id="math-status" class="text-sm font-medium text-emerald-500">
-            No needless loss possible. Every owed particular is preserved.
-          </div>
-          <div id="math-proof" class="text-xs text-[var(--muted-foreground)] font-mono">
-            S = V ⟹ ∀x ∉ ∅, x ∈ Protected
-          </div>
-        </div>
-
-        <div class="p-4 rounded-xl bg-[var(--background)] border border-[var(--border)] space-y-2">
-          <div class="text-xs font-semibold uppercase tracking-wider text-[var(--muted-foreground)]">Tikanga Māori Alignment</div>
-          <div id="tikanga-status" class="text-sm font-medium text-[var(--foreground)]">
-            Whakapapa unbroken: Mauri of the awa, the whenua, and the tangata all protected.
-          </div>
-          <div class="text-xs text-[var(--muted-foreground)]">
-            "Kāore he tangata, he mea rānei e waiho noa ki tahaki."
+          <div class="p-5 rounded-xl bg-slate-950 border border-slate-800 space-y-3">
+            <span class="text-[10px] font-mono text-slate-500 uppercase font-bold">Quantum Unitarity Bound</span>
+            <div>
+              <div class="text-xs text-slate-400">Poincaré Recurrence Status:</div>
+              <div class="text-base font-mono font-bold text-teal-300 mt-0.5">Closed Evolution (U†U = 𝕀)</div>
+            </div>
+            <p class="text-xs text-slate-400 leading-relaxed">
+              <span class="font-mono text-teal-400">Snuffy.ClosedUnitaryRecurrence</span> proves that on compact state spaces, states eventually recur; information is never swallowed into absolute oblivion.
+            </p>
           </div>
         </div>
       </div>
     </div>
 
-    <!-- Footer Note -->
-    <div class="text-center text-xs text-[var(--muted-foreground)] pt-2">
-      Te Whare Wānanga o Mangakōtukutuku · Non-Commercial Educational Research · Lean v4.35.0 Verified Canon
+    <!-- LAB 4: Wave-Race Safety Bounds -->
+    <div id="lab-4" class="lab-pane hidden space-y-6">
+      <div class="bg-slate-900 border border-slate-800 rounded-2xl p-6 space-y-6">
+        <div>
+          <span class="text-xs font-mono text-emerald-400 uppercase font-bold bg-emerald-500/10 px-2.5 py-0.5 rounded-full border border-emerald-500/20">
+            Unit 4 Simulation
+          </span>
+          <h2 class="text-xl font-bold text-white mt-2">The Reach-Before-Harm Wave Race</h2>
+          <p class="text-xs text-slate-400 mt-1">
+            Verify the theorem: <span class="font-mono text-emerald-400">r &gt; v_harm (τ_resp + r/v_signal)</span>. Ensure sensor quorums engage strictly before the harm front arrives.
+          </p>
+        </div>
+
+        <!-- Sliders -->
+        <div class="space-y-4 bg-slate-950 p-5 rounded-xl border border-slate-800">
+          <div>
+            <div class="flex justify-between text-xs font-mono mb-1">
+              <span class="text-slate-400">Harm Front Velocity (v_harm):</span>
+              <span id="vharm-val" class="text-rose-400 font-bold">0.50 c</span>
+            </div>
+            <input id="vharm-slider" type="range" min="10" max="95" value="50" class="w-full accent-rose-500 cursor-pointer">
+          </div>
+
+          <div>
+            <div class="flex justify-between text-xs font-mono mb-1">
+              <span class="text-slate-400">Quorum Consensus Latency (τ_resp):</span>
+              <span id="tau-val" class="text-amber-400 font-bold">10 µs</span>
+            </div>
+            <input id="tau-slider" type="range" min="1" max="50" value="10" class="w-full accent-amber-500 cursor-pointer">
+          </div>
+        </div>
+
+        <!-- Results Card -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div class="p-5 rounded-xl bg-slate-950 border border-slate-800 space-y-2">
+            <span class="text-[10px] font-mono text-slate-500 uppercase font-bold">Minimum Safe Buffer Thickness</span>
+            <div id="rsafe-display" class="text-2xl font-mono font-bold text-emerald-400">3.00 km</div>
+            <p class="text-xs text-slate-400">
+              Any disturbance initiated beyond this radius will be detected and authoritatively restrained before reaching the protected core.
+            </p>
+          </div>
+
+          <div class="p-5 rounded-xl bg-slate-950 border border-slate-800 space-y-2">
+            <span class="text-[10px] font-mono text-slate-500 uppercase font-bold">Kaitiakitanga Alignment</span>
+            <div class="text-sm font-bold text-white">Autonomic Protection Running</div>
+            <p class="text-xs text-slate-400">
+              The E9 sensor-quorum arrays intercept uncompensated deviations at light speed (<span class="font-mono">c</span>). Care continues uninterrupted.
+            </p>
+          </div>
+        </div>
+      </div>
     </div>
 
   </div>
 
   <script>
+    // Tab Switching Logic
+    function switchTab(num) {
+      document.querySelectorAll('.lab-pane').forEach(el => el.classList.add('hidden'));
+      document.querySelectorAll('.tab-btn').forEach(btn => {
+        btn.classList.remove('bg-emerald-500/20', 'text-emerald-400', 'border-emerald-500/40');
+        btn.classList.add('bg-slate-950', 'text-slate-400', 'border-slate-800');
+      });
+
+      document.getElementById(`lab-${num}`).classList.remove('hidden');
+      const activeBtn = document.getElementById(`tab-btn-${num}`);
+      activeBtn.classList.remove('bg-slate-950', 'text-slate-400', 'border-slate-800');
+      activeBtn.classList.add('bg-emerald-500/20', 'text-emerald-400', 'border-emerald-500/40');
+    }
+
+    // Lab 1: Scope Slider Logic
     const slider = document.getElementById('scope-slider');
     const badge = document.getElementById('scope-badge');
-    const mathStatus = document.getElementById('math-status');
-    const mathProof = document.getElementById('math-proof');
-    const tikangaStatus = document.getElementById('tikanga-status');
+    const scopeMath = document.getElementById('scope-math');
+    const scopeTikanga = document.getElementById('scope-tikanga');
 
     slider.addEventListener('input', (e) => {
       const val = parseInt(e.target.value);
       badge.textContent = `Scope: ${val}%`;
-
       if (val === 100) {
-        badge.className = "px-3 py-1 rounded-full text-xs font-mono font-bold bg-emerald-500/10 text-emerald-500 border border-emerald-500/20";
-        mathStatus.textContent = "No needless loss possible. Every owed particular is preserved.";
-        mathStatus.className = "text-sm font-medium text-emerald-500";
-        mathProof.textContent = "S = V ⟹ ∀x ∉ ∅, x ∈ Protected (Proposition 3 satisfied)";
-        tikangaStatus.textContent = "Whakapapa unbroken: Mauri of the awa, the whenua, and the tangata all protected.";
+        badge.className = "px-3 py-1 rounded-full text-xs font-mono font-bold bg-emerald-500/10 text-emerald-400 border border-emerald-500/30";
+        scopeMath.textContent = "No needless loss possible. Scope equals the entire relational domain (S = V).";
+        scopeMath.className = "text-xs font-medium text-emerald-400 mt-1";
+        scopeTikanga.textContent = "Whakapapa unbroken: Mauri of awa, whenua, and tangata all protected.";
       } else if (val >= 60) {
-        badge.className = "px-3 py-1 rounded-full text-xs font-mono font-bold bg-amber-500/10 text-amber-500 border border-amber-500/20";
-        mathStatus.textContent = `Partial Scope Vulnerability: ${100 - val}% of particulars are invisible to optimizer.`;
-        mathStatus.className = "text-sm font-medium text-amber-500";
-        mathProof.textContent = `∃x ∉ S such that outcome {x} is needlessly discarded for ∅.`;
-        tikangaStatus.textContent = "Severed ties: Externalized damage degrades peripheral whānau and ecosystems.";
+        badge.className = "px-3 py-1 rounded-full text-xs font-mono font-bold bg-amber-500/10 text-amber-400 border border-amber-500/30";
+        scopeMath.textContent = `Partial Scope Vulnerability: ${100 - val}% of nodes are ignored by optimizer.`;
+        scopeMath.className = "text-xs font-medium text-amber-400 mt-1";
+        scopeTikanga.textContent = "Severed ties: Externalized damage degrades peripheral whānau and ecosystems.";
       } else {
-        badge.className = "px-3 py-1 rounded-full text-xs font-mono font-bold bg-rose-500/10 text-rose-500 border border-rose-500/20";
-        mathStatus.textContent = "Severe Blind Optimization: System will sacrifice non-included nodes to minimize local cost.";
-        mathStatus.className = "text-sm font-medium text-rose-500";
-        mathProof.textContent = "Avoidable Stage-1 loss guaranteed across feasible families.";
-        tikangaStatus.textContent = "Loss of Mauri: Isolationist posture invites reciprocal failure and instability.";
+        badge.className = "px-3 py-1 rounded-full text-xs font-mono font-bold bg-rose-500/10 text-rose-400 border border-rose-500/30";
+        scopeMath.textContent = "Severe Blind Optimization: Inevitable destruction of non-included particulars.";
+        scopeMath.className = "text-xs font-medium text-rose-400 mt-1";
+        scopeTikanga.textContent = "Loss of Mauri: Isolationist posture invites reciprocal failure and instability.";
       }
     });
+
+    // Lab 2: Landauer vs Bennett Logic
+    let classicalBits = 0;
+    const kB_T_ln2 = 2.87e-21;
+
+    function eraseClassical(count) {
+      classicalBits += count;
+      document.getElementById('cl-bits-erased').textContent = `${classicalBits} Bits Erased`;
+      const joules = (classicalBits * kB_T_ln2).toExponential(2);
+      document.getElementById('cl-heat-joules').textContent = `${joules} J Heat Dissipated`;
+    }
+
+    function runBennettCycle() {
+      const badge = document.getElementById('rev-status-badge');
+      badge.textContent = "Computing Forward...";
+      badge.className = "text-xs font-mono bg-amber-500/10 text-amber-400 px-2 py-0.5 rounded";
+
+      setTimeout(() => {
+        badge.textContent = "Copying Result...";
+        setTimeout(() => {
+          badge.textContent = "Uncomputing Scratchpad...";
+          setTimeout(() => {
+            badge.textContent = "Cycle Restored: 0 J Loss";
+            badge.className = "text-xs font-mono bg-emerald-500/10 text-emerald-400 px-2 py-0.5 rounded";
+          }, 400);
+        }, 400);
+      }, 400);
+    }
+
+    // Lab 3: Trapping Scale Calculations
+    function setMass(massKg, label) {
+      const G = 6.6743e-11;
+      const c = 2.9979e8;
+      const rs = (2 * G * massKg) / (c * c);
+      
+      let rsText = "";
+      let note = "";
+      if (rs < 1e-12) {
+        rsText = `${(rs * 1e15).toFixed(2)} femtometers`;
+        note = `${label}: Squeezing mass this small is forbidden by quantum uncertainty and repulsion!`;
+      } else if (rs < 1) {
+        rsText = `${(rs * 1000).toFixed(2)} millimeters`;
+        note = `${label}: Squeezing this mass smaller than ${rsText} requires pressures far exceeding ordinary matter.`;
+      } else if (rs < 1e5) {
+        rsText = `${(rs / 1000).toFixed(2)} kilometers`;
+        note = `${label}: A typical stellar collapse halted by neutron degeneracy forms a neutron star without reaching rs!`;
+      } else {
+        rsText = `${(rs / 1000).toLocaleString()} km`;
+        note = `${label}: Supermassive regime where horizon curvature is gentler, but quantum recurrence remains valid.`;
+      }
+
+      document.getElementById('rs-display').textContent = rsText;
+      document.getElementById('rs-note').textContent = note;
+    }
+
+    // Lab 4: Wave Race Calculations
+    const vharmSlider = document.getElementById('vharm-slider');
+    const tauSlider = document.getElementById('tau-slider');
+    const vharmVal = document.getElementById('vharm-val');
+    const tauVal = document.getElementById('tau-val');
+    const rsafeDisplay = document.getElementById('rsafe-display');
+
+    function updateWaveRace() {
+      const vharmFrac = parseInt(vharmSlider.value) / 100;
+      const tauMicro = parseInt(tauSlider.value);
+      vharmVal.textContent = `${vharmFrac.toFixed(2)} c`;
+      tauVal.textContent = `${tauMicro} µs`;
+
+      const c = 3.0e8;
+      const v_harm = vharmFrac * c;
+      const tau = tauMicro * 1e-6;
+      const r_safe = (v_harm * tau) / (1 - vharmFrac);
+
+      if (r_safe < 1000) {
+        rsafeDisplay.textContent = `${r_safe.toFixed(1)} meters`;
+      } else {
+        rsafeDisplay.textContent = `${(r_safe / 1000).toFixed(2)} km`;
+      }
+    }
+
+    vharmSlider.addEventListener('input', updateWaveRace);
+    tauSlider.addEventListener('input', updateWaveRace);
   </script>
 </body>
 </html>
