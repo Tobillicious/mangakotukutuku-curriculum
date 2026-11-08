@@ -62,3 +62,4 @@ These educational resources are dedicated to the public good and distributed und
 
 *Mā te mōhio ka mārama, mā te mārama ka mātau, mā te mātau ka ora.*  
 *(Through knowledge comes understanding, through understanding comes wisdom, through wisdom comes life and well-being.)*
+

@@ -91,7 +91,8 @@ $$\| |\psi(\tau_{\text{rec}})\rangle - |\psi(0)\rangle \| < \varepsilon$$
 In the formal Lean canon of the Universal Protection Theory, this is kernel-checked in `Snuffy.ClosedUnitaryRecurrence`:
 ```lean
 theorem unitary_no_permanent_curtailment
-    {E : Type} [NormedAddCommGroup E] [InnerProductSpace ℂ E] [FiniteDimensional ℂ E]
+    {E : Type} [NormedAddCommGroup E]
+    [InnerProductSpace ℂ E] [FiniteDimensional ℂ E]
     (U : E ≃ₗᵢ[ℂ] E) (x : E) (hx : x ≠ 0) :
     ¬ (∀ n : ℕ, ‖(U ^ n) x‖ < ‖x‖)
 ```
@@ -181,3 +182,4 @@ $$\mathbf{U} = \frac{1}{\sqrt{2}} \begin{pmatrix} 1 & 1 \\ 1 & -1 \end{pmatrix}$
 
 ---
 *Mangakōtukutuku College Non-Commercial Educational Resources · Te Whare Wānanga Series · Edition 1.0 (2026)*
+

@@ -30,9 +30,13 @@ In the formal foundations of the Universal Protection Theory, four physical prem
 
 ```mermaid
 flowchart TD
-    P1["P1: The Single Structure<br/>No outside substance or spectator"] --- P2["P2: Constituted Identity<br/>Identity is relations within the web"]
-    P2 --- P3["P3: Historical Continuity<br/>Real differences & unbroken process"]
-    P3 --- P4["P4: Local Interactions<br/>Signals travel at finite speed c"]
+    P1["P1: Single Structure (No outside)"]
+    P2["P2: Relational Identity"]
+    P3["P3: Historical Continuity"]
+    P4["P4: Local Interactions (Finite c)"]
+    P1 --- P2
+    P2 --- P3
+    P3 --- P4
     P4 --- P1
 ```
 
@@ -181,3 +185,4 @@ As we build the next generation of artificial minds and scientific models, we mu
 
 ---
 *Mangakōtukutuku College Non-Commercial Educational Resources · Te Whare Wānanga Series · Edition 1.0 (2026)*
+

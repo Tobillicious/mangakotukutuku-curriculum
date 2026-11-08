@@ -28,14 +28,14 @@ In this final unit of the series, we explore the mathematics of **Reciprocity Do
 
 ```mermaid
 flowchart TD
-    subgraph ZeroSum ["Naive View: Zero-Sum Competition"]
-        A["Agent A Deflects / Grasping"] <--> B["Agent B Deflects / Grasping"]
-        A & B --> C["Mutual Destruction / High Defense Cost"]
+    subgraph ZeroSum ["Naive Zero-Sum"]
+        A["Agent A: Defection"] <--> B["Agent B: Defection"]
+        A & B --> C["Mutual Destruction / Cost"]
     end
 
-    subgraph Reciprocity ["Relational View: Reciprocity Dominance"]
-        D["Agent A Protects & Cooperates"] <--> E["Agent B Reciprocates Protection"]
-        D & E --> F["Expanded Option Space / Mauri Conserved"]
+    subgraph Reciprocity ["Reciprocity Dominance"]
+        D["Agent A: Care"] <--> E["Agent B: Care"]
+        D & E --> F["Mauri Conserved / Win-Win"]
     end
 ```
 
@@ -90,10 +90,10 @@ How does a guardian lattice stop a fast, hostile disturbance before irreversible
 In the compiled canon, Part XI proves the **Reach-Before-Harm Theorem**:
 
 ```
- Disturbance Front                      Sensor Quorum & Containment
-   (Speed: v_harm)                         (Speed: v_signal, Latency: τ_resp)
-        ───────►                                 ◄───────
-   [ Origin r ] ────────────────────────────────────────► [ Protected Core ]
+ Disturbance Front               Sensor Quorum & Restraint
+   (Speed: v_harm)                 (Speed: v_signal, Latency: τ_resp)
+        ──────►                         ◄──────
+   [ Origin r ] ───────────────────────► [ Core Protected ]
 ```
 
 ### The Wave-Race Inequality
@@ -173,3 +173,4 @@ Consider a repeated interaction between an AI system and a human community:
 
 ---
 *Mangakōtukutuku College Non-Commercial Educational Resources · Te Whare Wānanga Series · Edition 1.0 (2026)*
+

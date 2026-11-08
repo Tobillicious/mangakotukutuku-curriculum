@@ -9,10 +9,14 @@ documentclass: report
 toc: true
 toc-depth: 2
 numbersections: true
+header-includes:
+  - \usepackage{amsmath}
+  - \usepackage{amssymb}
+  - \usepackage{listings}
+  - \lstset{basicstyle=\ttfamily\footnotesize,breaklines=true,columns=flexible,keepspaces=true}
 ---
 
-
-ewpage
+\newpage
 
 # Te Whare Wānanga o Mangakōtukutuku
 ## Ngā Taura Whakapapa: The Relational Web
@@ -46,9 +50,13 @@ In the formal foundations of the Universal Protection Theory, four physical prem
 
 ```mermaid
 flowchart TD
-    P1["P1: The Single Structure<br/>No outside substance or spectator"] --- P2["P2: Constituted Identity<br/>Identity is relations within the web"]
-    P2 --- P3["P3: Historical Continuity<br/>Real differences & unbroken process"]
-    P3 --- P4["P4: Local Interactions<br/>Signals travel at finite speed c"]
+    P1["P1: Single Structure (No outside)"]
+    P2["P2: Relational Identity"]
+    P3["P3: Historical Continuity"]
+    P4["P4: Local Interactions (Finite c)"]
+    P1 --- P2
+    P2 --- P3
+    P3 --- P4
     P4 --- P1
 ```
 
@@ -236,11 +244,11 @@ In Te Ao Māori, this has always been understood through the concepts of **Mauri
 ## 2. The Thermodynamic Foundations: Mauri & The Laws of Energy
 
 ```mermaid
-flowchart LR
-    A["First Law (Conservation)<br/>Mauri is neither created nor destroyed"] --> C["Thermodynamic Balance"]
-    B["Second Law (Entropy)<br/>dS ≥ 0: Disorder never spontaneously decreases"] --> C
-    C --> D["Landauer's Principle<br/>Erasing 1 bit costs kB T ln 2"]
-    D --> E["Reversible Computing (Bennett)<br/>Compute without heat by preserving history"]
+flowchart TD
+    A["First Law: Mauri Conserved"] --> C["Thermodynamic Balance"]
+    B["Second Law: dS ≥ 0"] --> C
+    C --> D["Landauer: Erasure costs kB T ln 2"]
+    D --> E["Bennett: Reversible Computing"]
 ```
 
 ### 2.1 The First Law: Conservation of Mauri
@@ -306,7 +314,9 @@ For decades, engineers assumed that every computational step (adding numbers, ru
 In 1973, **Charles Bennett** made a historic breakthrough: **Computation does not require heat. Only erasure does.**
 
 ### 4.1 Logically Irreversible vs. Reversible Gates
+
 Consider a standard classical **AND** gate:
+
 | Input A | Input B | Output (A AND B) |
 | :---: | :---: | :---: |
 | 0 | 0 | **0** |
@@ -322,7 +332,7 @@ $$(a, b, c) \mapsto (a,\, b,\, c \oplus (a \cdot b))$$
 Because the mapping is bijective (one-to-one and onto), no information is ever lost. The inputs can be reconstructed completely from the outputs.
 
 ```
-Input: (a, b, c)  ───► [ Reversible Gate ] ───►  Output: (a, b, c ⊕ ab)
+Input: (a, b, c) ──► [ Reversible Gate ] ──► Output: (a, b, c ⊕ ab)
                            │
                  History Preserved!
                  Zero Entropy Loss!
@@ -482,7 +492,8 @@ $$\| |\psi(\tau_{\text{rec}})\rangle - |\psi(0)\rangle \| < \varepsilon$$
 In the formal Lean canon of the Universal Protection Theory, this is kernel-checked in `Snuffy.ClosedUnitaryRecurrence`:
 ```lean
 theorem unitary_no_permanent_curtailment
-    {E : Type} [NormedAddCommGroup E] [InnerProductSpace ℂ E] [FiniteDimensional ℂ E]
+    {E : Type} [NormedAddCommGroup E]
+    [InnerProductSpace ℂ E] [FiniteDimensional ℂ E]
     (U : E ≃ₗᵢ[ℂ] E) (x : E) (hx : x ≠ 0) :
     ¬ (∀ n : ℕ, ‖(U ^ n) x‖ < ‖x‖)
 ```
@@ -610,14 +621,14 @@ In this final unit of the series, we explore the mathematics of **Reciprocity Do
 
 ```mermaid
 flowchart TD
-    subgraph ZeroSum ["Naive View: Zero-Sum Competition"]
-        A["Agent A Deflects / Grasping"] <--> B["Agent B Deflects / Grasping"]
-        A & B --> C["Mutual Destruction / High Defense Cost"]
+    subgraph ZeroSum ["Naive Zero-Sum"]
+        A["Agent A: Defection"] <--> B["Agent B: Defection"]
+        A & B --> C["Mutual Destruction / Cost"]
     end
 
-    subgraph Reciprocity ["Relational View: Reciprocity Dominance"]
-        D["Agent A Protects & Cooperates"] <--> E["Agent B Reciprocates Protection"]
-        D & E --> F["Expanded Option Space / Mauri Conserved"]
+    subgraph Reciprocity ["Reciprocity Dominance"]
+        D["Agent A: Care"] <--> E["Agent B: Care"]
+        D & E --> F["Mauri Conserved / Win-Win"]
     end
 ```
 
@@ -672,10 +683,10 @@ How does a guardian lattice stop a fast, hostile disturbance before irreversible
 In the compiled canon, Part XI proves the **Reach-Before-Harm Theorem**:
 
 ```
- Disturbance Front                      Sensor Quorum & Containment
-   (Speed: v_harm)                         (Speed: v_signal, Latency: τ_resp)
-        ───────►                                 ◄───────
-   [ Origin r ] ────────────────────────────────────────► [ Protected Core ]
+ Disturbance Front               Sensor Quorum & Restraint
+   (Speed: v_harm)                 (Speed: v_signal, Latency: τ_resp)
+        ──────►                         ◄──────
+   [ Origin r ] ───────────────────────► [ Core Protected ]
 ```
 
 ### The Wave-Race Inequality

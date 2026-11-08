@@ -29,11 +29,11 @@ In Te Ao Māori, this has always been understood through the concepts of **Mauri
 ## 2. The Thermodynamic Foundations: Mauri & The Laws of Energy
 
 ```mermaid
-flowchart LR
-    A["First Law (Conservation)<br/>Mauri is neither created nor destroyed"] --> C["Thermodynamic Balance"]
-    B["Second Law (Entropy)<br/>dS ≥ 0: Disorder never spontaneously decreases"] --> C
-    C --> D["Landauer's Principle<br/>Erasing 1 bit costs kB T ln 2"]
-    D --> E["Reversible Computing (Bennett)<br/>Compute without heat by preserving history"]
+flowchart TD
+    A["First Law: Mauri Conserved"] --> C["Thermodynamic Balance"]
+    B["Second Law: dS ≥ 0"] --> C
+    C --> D["Landauer: Erasure costs kB T ln 2"]
+    D --> E["Bennett: Reversible Computing"]
 ```
 
 ### 2.1 The First Law: Conservation of Mauri
@@ -99,7 +99,9 @@ For decades, engineers assumed that every computational step (adding numbers, ru
 In 1973, **Charles Bennett** made a historic breakthrough: **Computation does not require heat. Only erasure does.**
 
 ### 4.1 Logically Irreversible vs. Reversible Gates
+
 Consider a standard classical **AND** gate:
+
 | Input A | Input B | Output (A AND B) |
 | :---: | :---: | :---: |
 | 0 | 0 | **0** |
@@ -115,7 +117,7 @@ $$(a, b, c) \mapsto (a,\, b,\, c \oplus (a \cdot b))$$
 Because the mapping is bijective (one-to-one and onto), no information is ever lost. The inputs can be reconstructed completely from the outputs.
 
 ```
-Input: (a, b, c)  ───► [ Reversible Gate ] ───►  Output: (a, b, c ⊕ ab)
+Input: (a, b, c) ──► [ Reversible Gate ] ──► Output: (a, b, c ⊕ ab)
                            │
                  History Preserved!
                  Zero Entropy Loss!
@@ -174,3 +176,4 @@ $$(x, y, z) \mapsto (x,\, y,\, z \oplus (x \land y))$$
 
 ---
 *Mangakōtukutuku College Non-Commercial Educational Resources · Te Whare Wānanga Series · Edition 1.0 (2026)*
+
