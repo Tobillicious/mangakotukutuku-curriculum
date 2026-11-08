@@ -2,6 +2,10 @@
 ### World-Class, Non-Commercial STEM & Relational Philosophy Resources
 *Mangakōtukutuku College · Hamilton, Aotearoa New Zealand · Edition 1.0 (2026)*
 
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.24047679.svg)](https://doi.org/10.5281/zenodo.24047679)
+[![License: CC BY-NC-SA 4.0](https://img.shields.io/badge/License-CC%20BY--NC--SA%204.0-lightgrey.svg)](https://creativecommons.org/licenses/by-nc-sa/4.0/)
+[![Interactive Lab](https://img.shields.io/badge/Interactive_Lab-Live_on_Pages-emerald.svg)](https://tobillicious.github.io/mangakotukutuku-curriculum/)
+
 ---
 
 ## Kaupapa (Our Mission)
