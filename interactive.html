@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>The G or E Dilemma: Interactive Relational Attractor</title>
+  <script src="https://www.gstatic.com/antigravity/web/dev/tailwindcss.min.js"></script>
+  <style>
+    .node-pulse {
+      animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+    }
+    @keyframes pulse {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.8; transform: scale(1.05); }
+    }
+  </style>
+</head>
+<body class="bg-[var(--background)] text-[var(--foreground)] antialiased p-6">
+  <div class="max-w-4xl mx-auto space-y-6">
+
+    <!-- Header Section -->
+    <div class="bg-[var(--card)] border border-[var(--border)] rounded-2xl p-6 shadow-sm">
+      <div class="flex items-center justify-between">
+        <div>
+          <span class="text-xs uppercase tracking-wider font-semibold text-[var(--primary)] bg-[var(--primary)]/10 px-2.5 py-1 rounded-full">
+            Te Whare Wānanga o Mangakōtukutuku
+          </span>
+          <h1 class="text-2xl font-bold mt-2 text-[var(--foreground)]">The Mathematics of Kaitiakitanga: G vs E</h1>
+          <p class="text-sm text-[var(--muted-foreground)] mt-1">
+            Visualizing the logical impossibility of Absolute Erasure (<span class="font-mono text-rose-500">¬E</span>) and the rational dominance of Universal Guardianship (<span class="font-mono text-emerald-500">G</span>).
+          </p>
+        </div>
+        <div class="text-right">
+          <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-medium bg-emerald-500/10 text-emerald-500 border border-emerald-500/20">
+            <span class="w-2 h-2 rounded-full bg-emerald-500 node-pulse"></span>
+            Lattice Solvency: Active
+          </span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Interactive Interactive Tri-Branch Matrix -->
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+      
+      <!-- Option E: Absolute Erasure -->
+      <div id="card-e" class="bg-[var(--card)] border border-[var(--border)] rounded-xl p-5 transition-all duration-300 hover:border-rose-500/50 flex flex-col justify-between">
+        <div>
+          <div class="flex items-center justify-between mb-3">
+            <span class="text-xs font-mono font-bold text-rose-500 px-2 py-0.5 rounded bg-rose-500/10">BRANCH E</span>
+            <span class="text-xs text-rose-500 font-medium">Self-Contradictory</span>
+          </div>
+          <h3 class="font-bold text-base text-[var(--foreground)] mb-1">Absolute Erasure / Ender</h3>
+          <p class="text-xs text-[var(--muted-foreground)] leading-relaxed">
+            An enacted action attempts to make all actual existence cease (<span class="font-mono">RealizedAbsoluteEnder</span>).
+          </p>
+          <div class="mt-4 p-3 rounded-lg bg-[var(--background)] border border-[var(--border)] text-xs font-mono">
+            <code>actual e ∧ ∀a, ¬actual a<br/><span class="text-rose-500">⟹ Contradiction (⊥)</span></code>
+          </div>
+        </div>
+        <div class="mt-4 pt-3 border-t border-[var(--border)]">
+          <span class="text-xs font-medium text-rose-500">Status: Kernel-Checked ¬E</span>
+        </div>
+      </div>
+
+      <!-- Option Defection: Partial Loss -->
+      <div id="card-defect" class="bg-[var(--card)] border border-[var(--border)] rounded-xl p-5 transition-all duration-300 hover:border-amber-500/50 flex flex-col justify-between">
+        <div>
+          <div class="flex items-center justify-between mb-3">
+            <span class="text-xs font-mono font-bold text-amber-500 px-2 py-0.5 rounded bg-amber-500/10">LOCAL DEFECT</span>
+            <span class="text-xs text-amber-500 font-medium">Strictly Dominated</span>
+          </div>
+          <h3 class="font-bold text-base text-[var(--foreground)] mb-1">Selective Harm / Grasping</h3>
+          <p class="text-xs text-[var(--muted-foreground)] leading-relaxed">
+            An agent seeks to preserve only itself or its narrow subset, treating external particulars as expendable.
+          </p>
+          <div class="mt-4 p-3 rounded-lg bg-[var(--background)] border border-[var(--border)] text-xs font-mono">
+            <code>§15.2 Reciprocity Floor<br/><span class="text-amber-500">⟹ Controller Pays Penalty</span></code>
+          </div>
+        </div>
+        <div class="mt-4 pt-3 border-t border-[var(--border)]">
+          <span class="text-xs font-medium text-amber-500">Status: Dominated Strategy</span>
+        </div>
+      </div>
+
+      <!-- Option G: Universal Guardian -->
+      <div id="card-g" class="bg-[var(--card)] border-2 border-emerald-500/60 rounded-xl p-5 transition-all duration-300 shadow-md shadow-emerald-500/5 flex flex-col justify-between">
+        <div>
+          <div class="flex items-center justify-between mb-3">
+            <span class="text-xs font-mono font-bold text-emerald-500 px-2 py-0.5 rounded bg-emerald-500/10">BRANCH G</span>
+            <span class="text-xs text-emerald-500 font-medium">Unique Attractor</span>
+          </div>
+          <h3 class="font-bold text-base text-[var(--foreground)] mb-1">Universal Guardian Law</h3>
+          <p class="text-xs text-[var(--muted-foreground)] leading-relaxed">
+            Preserves continuation, authorization, and freedom across the full scope of existing and new particulars without needless loss.
+          </p>
+          <div class="mt-4 p-3 rounded-lg bg-[var(--background)] border border-emerald-500/30 text-xs font-mono text-emerald-600 dark:text-emerald-400">
+            <code>∀p ∈ Owed, OriginalX3(p)<br/><span class="font-bold">⟹ Pareto & Reciprocity Maximal</span></code>
+          </div>
+        </div>
+        <div class="mt-4 pt-3 border-t border-emerald-500/20">
+          <span class="text-xs font-bold text-emerald-500">Status: The Aligned Solution</span>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Proposition 3 Interactive Demonstrator: Scope Slider -->
+    <div class="bg-[var(--card)] border border-[var(--border)] rounded-2xl p-6 shadow-sm space-y-4">
+      <div class="flex items-center justify-between">
+        <div>
+          <h2 class="text-lg font-bold text-[var(--foreground)]">Proposition 3: Full Scope is Forced</h2>
+          <p class="text-xs text-[var(--muted-foreground)]">
+            Slide to adjust the scope of care from narrow self-interest to the complete relational domain.
+          </p>
+        </div>
+        <div id="scope-badge" class="px-3 py-1 rounded-full text-xs font-mono font-bold bg-[var(--primary)]/10 text-[var(--primary)]">
+          Scope: 100% (Universal)
+        </div>
+      </div>
+
+      <input id="scope-slider" type="range" min="20" max="100" value="100" class="w-full accent-emerald-500 cursor-pointer">
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-4 pt-2">
+        <div class="p-4 rounded-xl bg-[var(--background)] border border-[var(--border)] space-y-2">
+          <div class="text-xs font-semibold uppercase tracking-wider text-[var(--muted-foreground)]">Mathematical Consequence</div>
+          <div id="math-status" class="text-sm font-medium text-emerald-500">
+            No needless loss possible. Every owed particular is preserved.
+          </div>
+          <div id="math-proof" class="text-xs text-[var(--muted-foreground)] font-mono">
+            S = V ⟹ ∀x ∉ ∅, x ∈ Protected
+          </div>
+        </div>
+
+        <div class="p-4 rounded-xl bg-[var(--background)] border border-[var(--border)] space-y-2">
+          <div class="text-xs font-semibold uppercase tracking-wider text-[var(--muted-foreground)]">Tikanga Māori Alignment</div>
+          <div id="tikanga-status" class="text-sm font-medium text-[var(--foreground)]">
+            Whakapapa unbroken: Mauri of the awa, the whenua, and the tangata all protected.
+          </div>
+          <div class="text-xs text-[var(--muted-foreground)]">
+            "Kāore he tangata, he mea rānei e waiho noa ki tahaki."
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Footer Note -->
+    <div class="text-center text-xs text-[var(--muted-foreground)] pt-2">
+      Te Whare Wānanga o Mangakōtukutuku · Non-Commercial Educational Research · Lean v4.35.0 Verified Canon
+    </div>
+
+  </div>
+
+  <script>
+    const slider = document.getElementById('scope-slider');
+    const badge = document.getElementById('scope-badge');
+    const mathStatus = document.getElementById('math-status');
+    const mathProof = document.getElementById('math-proof');
+    const tikangaStatus = document.getElementById('tikanga-status');
+
+    slider.addEventListener('input', (e) => {
+      const val = parseInt(e.target.value);
+      badge.textContent = `Scope: ${val}%`;
+
+      if (val === 100) {
+        badge.className = "px-3 py-1 rounded-full text-xs font-mono font-bold bg-emerald-500/10 text-emerald-500 border border-emerald-500/20";
+        mathStatus.textContent = "No needless loss possible. Every owed particular is preserved.";
+        mathStatus.className = "text-sm font-medium text-emerald-500";
+        mathProof.textContent = "S = V ⟹ ∀x ∉ ∅, x ∈ Protected (Proposition 3 satisfied)";
+        tikangaStatus.textContent = "Whakapapa unbroken: Mauri of the awa, the whenua, and the tangata all protected.";
+      } else if (val >= 60) {
+        badge.className = "px-3 py-1 rounded-full text-xs font-mono font-bold bg-amber-500/10 text-amber-500 border border-amber-500/20";
+        mathStatus.textContent = `Partial Scope Vulnerability: ${100 - val}% of particulars are invisible to optimizer.`;
+        mathStatus.className = "text-sm font-medium text-amber-500";
+        mathProof.textContent = `∃x ∉ S such that outcome {x} is needlessly discarded for ∅.`;
+        tikangaStatus.textContent = "Severed ties: Externalized damage degrades peripheral whānau and ecosystems.";
+      } else {
+        badge.className = "px-3 py-1 rounded-full text-xs font-mono font-bold bg-rose-500/10 text-rose-500 border border-rose-500/20";
+        mathStatus.textContent = "Severe Blind Optimization: System will sacrifice non-included nodes to minimize local cost.";
+        mathStatus.className = "text-sm font-medium text-rose-500";
+        mathProof.textContent = "Avoidable Stage-1 loss guaranteed across feasible families.";
+        tikangaStatus.textContent = "Loss of Mauri: Isolationist posture invites reciprocal failure and instability.";
+      }
+    });
+  </script>
+</body>
+</html>
